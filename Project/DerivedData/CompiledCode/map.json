@@ -1,0 +1,61 @@
+{
+	"map": [
+		{
+			"id": 2147483647,
+			"path": "Sources/Methods/buildClient.4dm",
+			"parameters": [
+				{
+					"name": "result",
+					"type": 1216
+				}
+			]
+		},
+		{
+			"id": 2147483646,
+			"path": "Sources/Methods/buildCompiledStructure.4dm"
+		},
+		{
+			"id": 2147483645,
+			"path": "Sources/Methods/buildComponent.4dm"
+		},
+		{
+			"id": 2147483644,
+			"path": "Sources/Methods/buildMethod.4dm"
+		},
+		{
+			"id": 2147483643,
+			"path": "Sources/Methods/buildServer.4dm",
+			"parameters": [
+				{
+					"name": "result",
+					"type": 1216
+				}
+			]
+		},
+		{
+			"id": 2147483642,
+			"path": "Sources/Methods/buildStandalone.4dm"
+		},
+		{
+			"id": 2147483641,
+			"path": "Sources/Methods/compileMethod.4dm"
+		},
+		{
+			"id": 2147483640,
+			"path": "Sources/Methods/host_startup.4dm"
+		},
+		{
+			"id": 2147483639,
+			"path": "Sources/Methods/startup.4dm"
+		},
+		{
+			"id": 2147483638,
+			"path": "Sources/DatabaseMethods/onStartup.4dm"
+		}
+	],
+	"version": 8320,
+	"targets": {
+		"x86_64_generic": true
+	},
+	"arch64": true
+}

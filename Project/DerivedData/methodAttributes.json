@@ -21,11 +21,11 @@
 		"compileMethod": {
 			"timeStamp": "2025-06-09T19:49:15Z"
 		},
-		"startup": {
-			"timeStamp": "2025-06-09T20:33:09Z"
-		},
 		"host_startup": {
-			"timeStamp": "2025-06-24T09:09:57Z"
+			"timeStamp": "2025-06-24T09:10:17Z"
+		},
+		"startup": {
+			"timeStamp": "2025-06-24T09:10:24Z"
 		}
 	}
 }
