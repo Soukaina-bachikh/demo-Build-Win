@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE base SYSTEM "http://www.4d.com/dtd/2007/base.dtd" >
+<base name="demo-Build4D-Win" uuid="1C6418D2858B78489BBAE847BA65505E" collation_locale="en">
+	<schema name="DEFAULT_SCHEMA"/>
+</base>
