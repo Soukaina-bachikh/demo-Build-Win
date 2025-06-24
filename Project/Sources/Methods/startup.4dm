@@ -1,2 +1,2 @@
 //%attributes = {}
-ALERT:C41("hello world!")
+host_startup
