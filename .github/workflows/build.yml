@@ -19,17 +19,6 @@ jobs:
         run: |
           %TOOL4D_PATH% --project "C:\Users\Admin\Desktop\demo-Build4D-Win\Project\demo-Build4D-Win.4DProject" --dataless --skip-onstartup --startup-method "buildMethod" > build_output.txt 2>&1
 
-      - name: Extract error lines
-        shell: powershell
-        run: |
-          $errors = Select-String -Path build_output.txt -Pattern 'error', 'line' -CaseSensitive:$false
-          if ($errors) {
-              Write-Output "⚠️ Potential error lines found in build log:"
-              $errors | ForEach-Object { Write-Output $_.Line }
-          } else {
-              Write-Output "No error lines found in build log."
-          }
-
       - name: Check build result
         shell: powershell
         run: |
