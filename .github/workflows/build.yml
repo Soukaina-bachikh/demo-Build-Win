@@ -17,12 +17,28 @@ jobs:
       - name: Build with Tool4D
         shell: cmd
         run: |
-          %TOOL4D_PATH% --project "C:\Users\Admin\Desktop\demo-Build4D-Win\Project\demo-Build4D-Win.4DProject" --dataless --skip-onstartup --startup-method "buildMethod"
-    
-      - name: Success message
-        if: success()
-        run: echo "✅ Build succeeded!"
+          %TOOL4D_PATH% --project "C:\Users\Admin\Desktop\demo-Build4D-Win\Project\demo-Build4D-Win.4DProject" --dataless --skip-onstartup --startup-method "buildMethod" > build_output.txt
+      
+      - name: Check build result
+        shell: powershell
+        run: |
+          $content = Get-Content build_output.txt -Raw
+          Write-Output "📄 Tool4D Build Output:"
+          Write-Output $content
+      
+          if (
+              $content -match '"success"\s*:\s*false' -or
+              $content -match 'tool4d\.4DRT\s+\[\-\d+\]'
+          ) {
+              Write-Output "❌ Build failed due to runtime errors!"
+              exit 1
+          } else {
+            Write-Output "✅ Build succeeded with no errors!"
+          }
+      # - name: Success message
+      #   if: success()
+      #   run: echo "✅ Build succeeded!"
 
-      - name: Failure message
-        if: failure()
-        run: echo "❌ Build failed!"
+      # - name: Failure message
+      #   if: failure()
+      #   run: echo "❌ Build failed!"
