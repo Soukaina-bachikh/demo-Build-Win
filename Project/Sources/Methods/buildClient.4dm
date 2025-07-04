@@ -18,7 +18,7 @@ $settings.sourceAppFolder:=Folder:C1567(fk documents folder:K87:21).folder("4D 2
 // Configure the application
 $settings.buildName:="clientApp"
 $settings.publishName:="myAppCli"
-//$settings.destinationFolder:=Folder(fk desktop folder).folder("buildApp/Client")
+$settings.destinationFolder:=Folder:C1567(fk desktop folder:K87:19).folder("buildApp/Client")
 
 //add ipAddress
 $settings.IPAddress:="127.0.0.1"
@@ -33,7 +33,7 @@ $settings.versioning.copyright:="copyright"
 $settings.versioning.companyName:="4D SAS"
 
 // Create the client application
-$build:=cs:C1710.Build4D.Client.new($settings)
+//$build:=cs.Build4D.Client.new($settings)
 $success:=$build.build()
 
 // Create the client application archive
