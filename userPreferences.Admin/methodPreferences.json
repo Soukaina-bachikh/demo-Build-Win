@@ -1,12 +1,12 @@
 {
 	"Sources/Methods/host_startup.4dm": {
-		"startSelection": 6,
-		"endSelection": 6,
-		"firstSelectedLine": 2,
-		"lastSelectedLine": 2,
+		"startSelection": 0,
+		"endSelection": 0,
+		"firstSelectedLine": 1,
+		"lastSelectedLine": 1,
 		"folding": [],
 		"bookmarks": [],
-		"stamp": "2025-07-04T11:55:10.203Z"
+		"stamp": "2025-07-04T13:58:42.391Z"
 	},
 	"Sources/Methods/startup.4dm": {
 		"startSelection": 12,
@@ -52,5 +52,14 @@
 		"folding": [],
 		"bookmarks": [],
 		"stamp": "2025-07-04T10:11:18.128Z"
+	},
+	"Sources/Methods/buildClient.4dm": {
+		"startSelection": 82,
+		"endSelection": 82,
+		"firstSelectedLine": 19,
+		"lastSelectedLine": 19,
+		"folding": [],
+		"bookmarks": [],
+		"stamp": "2025-07-04T14:02:58.753Z"
 	}
 }

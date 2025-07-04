@@ -18,7 +18,7 @@ $settings.sourceAppFolder:=Folder:C1567(fk documents folder:K87:21).folder("4D 2
 // Configure the application
 $settings.buildName:="clientApp"
 $settings.publishName:="myAppCli"
-$settings.destinationFolder:=Folder:C1567(fk desktop folder:K87:19).folder("buildApp/Client")
+//$settings.destinationFolder:=Folder(fk desktop folder).folder("buildApp/Client")
 
 //add ipAddress
 $settings.IPAddress:="127.0.0.1"
