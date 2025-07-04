@@ -24,17 +24,21 @@ jobs:
         run: |
           $content = Get-Content build_output.txt -Raw
           Write-Output "📄 Tool4D Build Output:"
+          Write-Output "----------------------------------------"
           Write-Output $content
+          Write-Output "----------------------------------------"
       
-          if (
-              $content -match '"success"\s*:\s*false' -or
-              $content -match 'tool4d\.4DRT\s+\[\-\d+\]'
-          ) {
-              Write-Output "❌ Build failed due to runtime errors!"
+          if ($content -notmatch '✅ All builds succeeded!') {
+              Write-Output "❌ Build did not complete successfully."
+              Write-Output "📄 Full Build Log:"
+              Write-Output "----------------------------------------"
+              Write-Output $content
+              Write-Output "----------------------------------------"
               exit 1
           } else {
-            Write-Output "✅ Build succeeded with no errors!"
+              Write-Output "✅ Build log confirms successful execution."
           }
+
       # - name: Success message
       #   if: success()
       #   run: echo "✅ Build succeeded!"
