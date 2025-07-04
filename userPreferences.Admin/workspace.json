@@ -1,7 +1,15 @@
 {
 	"editors": [
 		{
-			"type": "structure"
+			"type": "method",
+			"id": 2147483640,
+			"codeDescriptor": {
+				"type": 1,
+				"methodName": "host_startup"
+			}
+		},
+		{
+			"type": "explorer"
 		},
 		{
 			"type": "method",
@@ -12,7 +20,15 @@
 			}
 		},
 		{
-			"type": "explorer"
+			"type": "method",
+			"id": 2147483642,
+			"codeDescriptor": {
+				"type": 1,
+				"methodName": "buildStandalone"
+			}
+		},
+		{
+			"type": "structure"
 		}
 	]
 }

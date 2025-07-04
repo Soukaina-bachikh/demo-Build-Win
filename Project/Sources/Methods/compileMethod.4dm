@@ -1,4 +1,15 @@
 //%attributes = {}
+// ----------------------------------------------------
+// User name (OS): Admin
+// Date and time: 07/01/25, 11:21:32
+// ----------------------------------------------------
+// Method: compileMethod
+// Description
+// 
+//
+// Parameters
+// ----------------------------------------------------
+
 LOG EVENT:C667(Into system standard outputs:K38:9; "Compilation starts\r\n")
 var $projectPath : Text
 var $result : Integer

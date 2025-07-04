@@ -50,7 +50,7 @@ $settings.versioning.companyName:="4D"
 //$settings.versioning.internalName:="internalName"
 
 // Create the deployment license file
-$settings.license:=Folder:C1567(fk licenses folder:K87:16).file("R-4UUD200UUS001BCPUY0B3AC.license4D")
+$settings.license:=Folder:C1567(fk licenses folder:K87:16).file("R-4USD000UUR001BCQ8S11F61.license4D")
 
 //// Sign the macOS appplication
 //$settings.signApplication:={}

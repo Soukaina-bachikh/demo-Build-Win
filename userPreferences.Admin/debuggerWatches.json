@@ -1,0 +1,25 @@
+[
+	{
+		"codeDescriptorWatches": [
+			{
+				"path": "buildStandalone",
+				"watches": [
+					{
+						"type": 66,
+						"formula": "$settings",
+						"expanded": true
+					},
+					{
+						"type": 66,
+						"formula": "$build",
+						"expanded": true
+					},
+					{
+						"type": 66,
+						"formula": "$success"
+					}
+				]
+			}
+		]
+	}
+]
