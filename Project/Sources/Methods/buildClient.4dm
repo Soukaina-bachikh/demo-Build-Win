@@ -33,7 +33,7 @@ $settings.versioning.copyright:="copyright"
 $settings.versioning.companyName:="4D SAS"
 
 // Create the client application
-//$build:=cs.Build4D.Client.new($settings)
+$build:=cs:C1710.Build4D.Client.new($settings)
 $success:=$build.build()
 
 // Create the client application archive
