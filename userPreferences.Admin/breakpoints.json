@@ -5,5 +5,19 @@
 			"type": 1,
 			"methodName": "buildStandalone"
 		}
+	},
+	{
+		"line": 40,
+		"method": {
+			"type": 1,
+			"methodName": "buildClient"
+		}
+	},
+	{
+		"line": 38,
+		"method": {
+			"type": 1,
+			"methodName": "buildClient"
+		}
 	}
 ]

@@ -2,10 +2,10 @@
 	"editors": [
 		{
 			"type": "method",
-			"id": 2147483647,
+			"id": 2147483644,
 			"codeDescriptor": {
 				"type": 1,
-				"methodName": "buildClient"
+				"methodName": "buildMethod"
 			}
 		},
 		{
