@@ -12,14 +12,14 @@
 		"height": 554
 	},
 	"Sources/Methods/buildServer.4dm": {
-		"left": 7,
-		"top": 109,
+		"left": -21326,
+		"top": -21253,
 		"width": 965,
 		"height": 554
 	},
 	"Sources/Methods/buildStandalone.4dm": {
-		"left": 7,
-		"top": 109,
+		"left": -21326,
+		"top": -21253,
 		"width": 1000,
 		"height": 488
 	},
@@ -30,14 +30,14 @@
 		"height": 556
 	},
 	"Sources/Methods/buildMethod.4dm": {
-		"left": 0,
-		"top": 108,
+		"left": -21333,
+		"top": -21254,
 		"width": 965,
 		"height": 563
 	},
 	"Sources/Methods/buildClient.4dm": {
-		"left": 0,
-		"top": 78,
+		"left": -21333,
+		"top": -21284,
 		"width": 1280,
 		"height": 571
 	}
