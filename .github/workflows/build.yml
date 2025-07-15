@@ -25,15 +25,11 @@ jobs:
         run: |
           Write-Host "🔍 Checking build output..."
           $log = Get-Content build_output.txt -Raw
-
-          Write-Host "📄 Build Output:"
-          Write-Host "----------------------------------------"
-          Write-Host $log
-          Write-Host "----------------------------------------"
-
+      
           if ($log -notmatch '✅ All builds succeeded!') {
-            Write-Error "❌ Build failed. Pattern not found."
+            Write-Error "❌ Build failed. Pattern not found in output."
             exit 1
           } else {
             Write-Host "✅ Build succeeded. Pattern confirmed."
           }
+      
