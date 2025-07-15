@@ -17,12 +17,7 @@ jobs:
       - name: Build with Tool4D (live logs + save to file)
         shell: powershell
         run: |
-          Write-Host "🚀 Starting Tool4D build..."
-          & %TOOL4D_PATH% `
-            --project "C:\Users\Admin\Desktop\demo-Build4D-Win\Project\demo-Build4D-Win.4DProject" `
-            --dataless `
-            --skip-onstartup `
-            --startup-method "buildMethod" 2>&1 | Tee-Object -FilePath build_output.txt
+          %TOOL4D_PATH% --project "C:\Users\Admin\Desktop\demo-Build4D-Win\Project\demo-Build4D-Win.4DProject" --dataless --skip-onstartup --startup-method "buildMethod" 2>&1 | Tee-Object -FilePath build_output.txt
 
       - name: Verify Build Result
         shell: powershell
