@@ -18,7 +18,7 @@ jobs:
         shell: powershell
         run: |
           Write-Host "🚀 Starting Tool4D build..."
-          & "${env:TOOL4D_PATH}" `
+          & %TOOL4D_PATH% `
             --project "C:\Users\Admin\Desktop\demo-Build4D-Win\Project\demo-Build4D-Win.4DProject" `
             --dataless `
             --skip-onstartup `
