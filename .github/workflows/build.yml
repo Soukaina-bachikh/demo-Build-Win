@@ -1,7 +1,7 @@
 name: Build 4D Project
 
 on:
-  workflow_dispatch:           # Still allow manual trigger anytime
+  workflow_dispatch:
 
 jobs:
   build:
@@ -9,40 +9,35 @@ jobs:
 
     env:
       TOOL4D_PATH: C:\Users\Admin\Downloads\tool4d_win\tool4d\Tool4D.exe
-  
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Build with Tool4D
-        shell: cmd
-        run: |
-          %TOOL4D_PATH% --project "C:\Users\Admin\Desktop\demo-Build4D-Win\Project\demo-Build4D-Win.4DProject" --dataless --skip-onstartup --startup-method "buildMethod" > build_output.txt 2>&1
-
-      - name: Check build result
+      - name: Build with Tool4D (live logs + save to file)
         shell: powershell
         run: |
-          $content = Get-Content build_output.txt -Raw
-          Write-Output "📄 Tool4D Build Output:"
-          Write-Output "----------------------------------------"
-          Write-Output $content
-          Write-Output "----------------------------------------"
-      
-          if ($content -notmatch '✅ All builds succeeded!') {
-              Write-Output "❌ Build did not complete successfully."
-              Write-Output "📄 Full Build Log:"
-              Write-Output "----------------------------------------"
-              Write-Output $content
-              Write-Output "----------------------------------------"
-              exit 1
+          Write-Host "🚀 Starting Tool4D build..."
+          & "${env:TOOL4D_PATH}" `
+            --project "C:\Users\Admin\Desktop\demo-Build4D-Win\Project\demo-Build4D-Win.4DProject" `
+            --dataless `
+            --skip-onstartup `
+            --startup-method "buildMethod" 2>&1 | Tee-Object -FilePath build_output.txt
+
+      - name: Verify Build Result
+        shell: powershell
+        run: |
+          Write-Host "🔍 Checking build output..."
+          $log = Get-Content build_output.txt -Raw
+
+          Write-Host "📄 Build Output:"
+          Write-Host "----------------------------------------"
+          Write-Host $log
+          Write-Host "----------------------------------------"
+
+          if ($log -notmatch '✅ All builds succeeded!') {
+            Write-Error "❌ Build failed. Pattern not found."
+            exit 1
           } else {
-              Write-Output "✅ Build log confirms successful execution."
+            Write-Host "✅ Build succeeded. Pattern confirmed."
           }
-
-      # - name: Success message
-      #   if: success()
-      #   run: echo "✅ Build succeeded!"
-
-      # - name: Failure message
-      #   if: failure()
-      #   run: echo "❌ Build failed!"
