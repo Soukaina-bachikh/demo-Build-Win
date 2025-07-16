@@ -14,30 +14,29 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Build with Tool4D (live logs + save)
+      - name: Build with Tool4D (cmd + log file)
+        shell: cmd
+        run: |
+          echo 🚀 Starting Tool4D build...
+          "%TOOL4D_PATH%" --project "C:\Users\Admin\Desktop\demo-Build4D-Win\Project\demo-Build4D-Win.4DProject" --dataless --skip-onstartup --startup-method "buildMethod" > build_output.txt 2>&1
+          type build_output.txt
+      
+      - name: Check build result (PowerShell)
         shell: pwsh
         run: |
-          Write-Host "🚀 Starting Tool4D build..."
-          & "$env:TOOL4D_PATH" `
-            --project "C:\Users\Admin\Desktop\demo-Build4D-Win\Project\demo-Build4D-Win.4DProject" `
-            --dataless `
-            --skip-onstartup `
-            --startup-method "buildMethod" 2>&1 | Tee-Object -FilePath build_output.txt
-
-      - name: Check build result
-        shell: pwsh
-        run: |
-          Write-Host "🔍 Checking build output..."
+          if (-not (Test-Path "build_output.txt")) {
+            Write-Error "❌ build_output.txt not found!"
+            exit 1
+          }
+      
           $log = Get-Content build_output.txt -Raw
       
-          Write-Host "📄 Build Output:"
-          Write-Host "----------------------------------------"
-          Write-Host $log
-          Write-Host "----------------------------------------"
-      
-          if ($log -notmatch '✅ All builds succeeded!') {
-            Write-Error "❌ Build did not complete successfully."
+          if ($log -match '❌ Client build failed' -or $log -match '❌ Server build failed') {
+            Write-Error "❌ Build failed based on 4D buildMethod logs."
             exit 1
+          } elseif ($log -match '✅ All builds succeeded!') {
+            Write-Host "✅ Build succeeded."
           } else {
-            Write-Host "✅ Build log confirms successful execution."
+            Write-Error "❌ Build status unclear: missing success/failure messages."
+            exit 1
           }
