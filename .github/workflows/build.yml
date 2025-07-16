@@ -14,39 +14,30 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Build with Tool4D
-        shell: cmd
+      - name: Build with Tool4D (live logs + save)
+        shell: pwsh
         run: |
-          echo 🚀 Starting Tool4D build...
-          %TOOL4D_PATH% --project "C:\Users\Admin\Desktop\demo-Build4D-Win\Project\demo-Build4D-Win.4DProject" --dataless --skip-onstartup --startup-method "buildMethod" > build_output.txt 2>&1
-          echo 📄 Showing build logs:
-          type build_output.txt
+          Write-Host "🚀 Starting Tool4D build..."
+          & "$env:TOOL4D_PATH" `
+            --project "C:\Users\Admin\Desktop\demo-Build4D-Win\Project\demo-Build4D-Win.4DProject" `
+            --dataless `
+            --skip-onstartup `
+            --startup-method "buildMethod" 2>&1 | Tee-Object -FilePath build_output.txt
 
       - name: Check build result
-        shell: powershell
+        shell: pwsh
         run: |
-          $content = Get-Content build_output.txt -Raw
-          Write-Output "📄 Tool4D Build Output:"
-          Write-Output "----------------------------------------"
-          Write-Output $content
-          Write-Output "----------------------------------------"
-
-          if ($content -notmatch '✅ All builds succeeded!') {
-              Write-Output "❌ Build did not complete successfully."
-              Write-Output "📄 Full Build Log:"
-              Write-Output "----------------------------------------"
-              Write-Output $content
-              Write-Output "----------------------------------------"
-              exit 1
+          Write-Host "🔍 Checking build output..."
+          $log = Get-Content build_output.txt -Raw
+      
+          Write-Host "📄 Build Output:"
+          Write-Host "----------------------------------------"
+          Write-Host $log
+          Write-Host "----------------------------------------"
+      
+          if ($log -notmatch '✅ All builds succeeded!') {
+            Write-Error "❌ Build did not complete successfully."
+            exit 1
           } else {
-              Write-Output "✅ Build log confirms successful execution."
-          }ntent -notmatch '✅ All builds succeeded!') {
-              Write-Output "❌ Build did not complete successfully."
-              Write-Output "📄 Full Build Log:"
-              Write-Output "----------------------------------------"
-              Write-Output $content
-              Write-Output "----------------------------------------"
-              exit 1
-          } else {
-              Write-Output "✅ Build log confirms successful execution."
+            Write-Host "✅ Build log confirms successful execution."
           }
