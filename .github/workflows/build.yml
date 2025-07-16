@@ -14,29 +14,23 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Build with Tool4D (cmd + log file)
-        shell: cmd
+      - name: Build with Tool4D
+        shell: cmd      
         run: |
-          echo 🚀 Starting Tool4D build...
-          "%TOOL4D_PATH%" --project "C:\Users\Admin\Desktop\demo-Build4D-Win\Project\demo-Build4D-Win.4DProject" --dataless --skip-onstartup --startup-method "buildMethod" > build_output.txt 2>&1
-          type build_output.txt
-      
-      - name: Check build result (PowerShell)
-        shell: pwsh
+          %TOOL4D_PATH% --project "C:\Users\Admin\Desktop\demo-Build4D-Win\Project\demo-Build4D-Win.4DProject" --dataless --skip-onstartup --startup-method "buildMethod"
+
+      - name: Check build result
+        shell: powershell        # Use Windows PowerShell for this step
         run: |
-          if (-not (Test-Path "build_output.txt")) {
-            Write-Error "❌ build_output.txt not found!"
-            exit 1
-          }
+          $content = Get-Content build_output.txt -Raw
+          Write-Output "📄 Tool4D Build Output:"
+          Write-Output "----------------------------------------"
+          Write-Output $content
+          Write-Output "----------------------------------------"
       
-          $log = Get-Content build_output.txt -Raw
-      
-          if ($log -match '❌ Client build failed' -or $log -match '❌ Server build failed') {
-            Write-Error "❌ Build failed based on 4D buildMethod logs."
-            exit 1
-          } elseif ($log -match '✅ All builds succeeded!') {
-            Write-Host "✅ Build succeeded."
+          if ($content -notmatch '✅ All builds succeeded!') {
+              Write-Output "❌ Build did not complete successfully."
+              exit 1
           } else {
-            Write-Error "❌ Build status unclear: missing success/failure messages."
-            exit 1
-          }
+              Write-Output "✅ Build log confirms successful execution."
+          } 
