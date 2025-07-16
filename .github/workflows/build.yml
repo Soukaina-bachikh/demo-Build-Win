@@ -17,7 +17,10 @@ jobs:
       - name: Build with Tool4D
         shell: cmd
         run: |
-          %TOOL4D_PATH% --project "C:\Users\Admin\Desktop\demo-Build4D-Win\Project\demo-Build4D-Win.4DProject" --dataless --skip-onstartup --startup-method "buildMethod" 
+          echo 🚀 Starting Tool4D build...
+          %TOOL4D_PATH% --project "C:\Users\Admin\Desktop\demo-Build4D-Win\Project\demo-Build4D-Win.4DProject" --dataless --skip-onstartup --startup-method "buildMethod" > build_output.txt 2>&1
+          echo 📄 Showing build logs:
+          type build_output.txt
 
       - name: Check build result
         shell: powershell
@@ -27,8 +30,17 @@ jobs:
           Write-Output "----------------------------------------"
           Write-Output $content
           Write-Output "----------------------------------------"
-      
+
           if ($content -notmatch '✅ All builds succeeded!') {
+              Write-Output "❌ Build did not complete successfully."
+              Write-Output "📄 Full Build Log:"
+              Write-Output "----------------------------------------"
+              Write-Output $content
+              Write-Output "----------------------------------------"
+              exit 1
+          } else {
+              Write-Output "✅ Build log confirms successful execution."
+          }ntent -notmatch '✅ All builds succeeded!') {
               Write-Output "❌ Build did not complete successfully."
               Write-Output "📄 Full Build Log:"
               Write-Output "----------------------------------------"
